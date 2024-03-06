@@ -5,7 +5,7 @@ const DEFAULT_THEME_NAME = "normal"
 type DefaultThemeName = typeof DEFAULT_THEME_NAME
 
 /** 注册的主题名称, 其中 DefaultThemeName 是必填的 */
-export type ThemeName = DefaultThemeName | "dark" | "dark-blue"
+export type ThemeName = DefaultThemeName | "dark" | "dark-blue" | "black-pink"
 
 interface ThemeList {
   title: string
@@ -25,6 +25,10 @@ const themeList: ThemeList[] = [
   {
     title: "深蓝",
     name: "dark-blue"
+  },
+  {
+    title: "粉墨",
+    name: "black-pink"
   }
 ]
 
