@@ -247,6 +247,24 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: "/todolist",
+    component: Layouts,
+    redirect: "/todolist/index",
+    name: "Todolist",
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/todolist/index.vue"),
+        name: "Todolist",
+        meta: {
+          title: "Todolist",
+          elIcon: "Finished",
+          alwaysShow: true
+        }
+      }
+    ]
   }
 ]
 
