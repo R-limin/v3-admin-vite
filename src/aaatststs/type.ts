@@ -1,3 +1,11 @@
+// any 任意类型  unknown 不知道的类型
+// 1. top type 顶级类型  any  unknown
+// 2. Object
+// 3. Number String Boolean
+// 4. number string boolean
+// 5. 1  '字符串' false
+// 6. never
+
 // ^_
 // //原始类型的类型标注
 // // #region
