@@ -39,22 +39,27 @@ import { ref, computed } from "vue"
 // })
 // #endregion
 
+// data eg:
+// {
+//   title: "吃饭",
+//   complete: false
+// },
+// {
+//   title: "睡觉",
+//   complete: false
+// },
+// {
+//   title: "打代码",
+//   complete: false
+// }
+type TodoItem = {
+  title: string | number
+  complete: boolean
+  date: string
+}
 // #region Setup Store
 export const useTodolistStore = defineStore("todo", () => {
-  const list = ref([
-    {
-      title: "吃饭",
-      complete: false
-    },
-    {
-      title: "睡觉",
-      complete: false
-    },
-    {
-      title: "打代码",
-      complete: false
-    }
-  ])
+  const list = ref<TodoItem[]>([])
   const len = computed(() => list.value.length)
   const isComplete = computed(() => {
     const arr = list.value.filter((item) => {
@@ -71,9 +76,10 @@ export const useTodolistStore = defineStore("todo", () => {
       }
     })
     if (flag) {
-      list.value.push({
+      list.value.unshift({
         title: addItem,
-        complete: false
+        complete: false,
+        date: new Date().toLocaleString()
       })
     }
   }

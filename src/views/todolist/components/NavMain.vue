@@ -12,6 +12,7 @@ const { delTodo } = store
       <div>
         <input type="checkbox" v-model="item.complete" />
         {{ item.title }}
+        <span>{{ item.date }}</span>
         <button @click="delTodo(index)">删除</button>
       </div>
     </div>
