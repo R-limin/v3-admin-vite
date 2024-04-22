@@ -245,6 +245,14 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: "useWatermark"
         }
+      },
+      {
+        path: "use-mouse",
+        component: () => import("@/views/hook-demo/use-mouse-move.vue"),
+        name: "UseMouse",
+        meta: {
+          title: "useMouse"
+        }
       }
     ]
   },
