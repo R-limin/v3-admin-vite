@@ -10,10 +10,11 @@ const { delTodo } = store
   <div v-if="len >= 0">
     <div v-for="(item, index) in list" :key="index">
       <div>
-        <input type="checkbox" v-model="item.complete" />
-        {{ item.title }}
+        <!-- <input type="checkbox" v-model="item.complete" /> -->
+        <el-checkbox size="large" v-model="item.complete" />
+        <el-text :tag="item.complete ? 'del' : ''">{{ item.title }}</el-text>
         <span>{{ item.date }}</span>
-        <button @click="delTodo(index)">删除</button>
+        <el-button size="small" type="danger" @click="delTodo(index)">删除</el-button>
       </div>
     </div>
   </div>
