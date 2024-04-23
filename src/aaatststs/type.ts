@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+
 // any 任意类型  unknown 不知道的类型
 // 1. top type 顶级类型  any  unknown
 // 2. Object
@@ -6,19 +9,18 @@
 // 5. 1  '字符串' false
 // 6. never
 
-// ^_
-// //原始类型的类型标注
-// // #region
-// const name1: string = "linbudu"
-// const age: number = 24
-// const male: boolean = false
-// const undef: undefined = undefined
-// const nul: null = null
-// const obj: object = { name, age, male }
-// const bigintVar1: bigint = 9007199254740991n
-// const bigintVar2: bigint = BigInt(9007199254740991)
-// const symbolVar: symbol = Symbol("unique")
-// // #endregion
+//原始类型的类型标注
+// #region
+const name1: string = "linbudu"
+const age: number = 24
+const male: boolean = false
+const undef: undefined = undefined
+const nul: null = null
+const obj: object = { name, age, male }
+const bigintVar1: bigint = 9007199254740991n
+const bigintVar2: bigint = BigInt(9007199254740991)
+const symbolVar: symbol = Symbol("unique")
+// #endregion
 
 // // null & undefined
 // // #region
