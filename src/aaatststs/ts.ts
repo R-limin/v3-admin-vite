@@ -243,9 +243,6 @@ class Dom {
         root.appendChild(childEl)
       })
     }
-    // else {
-    //   this.setText(root, data.text)
-    // }
     return root
   }
 }
@@ -314,5 +311,115 @@ ref.value = "456" // "456setsetset"
 // Q: 为什么读value而不是_value？
 // A: 因为_value是私有属性，外部代码不能直接访问，只能通过get和set方法访问。
 //  为了保证对象的内聚和原子性，不对外暴露过多的类的特性，只提供必要的描述
+
+//#endregion
+
+// #region  基类 抽象类 abstract
+// abstract 关键字  用来定义抽象类和抽象方法
+// 抽象类不能实例化 不能被继承  抽象方法不能有具体实现
+// 抽象类不能被实例化
+// 抽象类可以有具体的属性和方法
+abstract class Vuee {
+  name: string
+  constructor(name: string) {
+    this.name = name
+  }
+  getName(): string {
+    //可以实现
+    return this.name
+  }
+  abstract init(name: string): void //abstract  不能被实现
+}
+
+class React extends Vuee {
+  constructor() {
+    super("react")
+  }
+  init(name: string) {}
+  setName(name: string) {
+    this.name = name
+  }
+}
+
+const react = new React()
+console.log(react.getName()) // "react"
+// react.init("vue") // 报错  抽象类不能被实例化
+
+// #endregion
+
+//#region   元组类型
+const arrr: [x: number, y?: boolean] = [1, true]
+arrr[0] = 2 // 允许修改元组的元素
+arrr.push(3) // 允许添加元素
+arrr.length = 1 // 允许修改元组的长度
+arrr[1] = false // 允许修改元组的元素
+console.log(arrr) // [2, false]
+
+//#endregion
+
+//#region  枚举类型  enum
+enum Color {
+  red,
+  green,
+  blue
+}
+console.log(Color.red) // 0;
+console.log(Color.green) // 1;
+console.log(Color.blue) // 2;
+console.log(Color[0]) // "red"
+
+//#endregion
+
+//#region   类型推论  类型别名type
+// extends  type中是包含的意思
+// 左边的值  会作为右边类型的子类型
+type num = 1 extends number ? 1 : 0
+//#endregion
+
+//#region never
+type A = "唱" | "跳" | "rap"
+function neverFunc(value: A) {
+  let error: never
+  switch (value) {
+    case "唱":
+      break
+    case "跳":
+      break
+    case "rap": //类型A中有rap 函数中没有处理 巧用never兜底，避免错误
+      break
+    default:
+      // 兜底逻辑  never不能分配给其他类型  避免错误
+      error = value
+      break
+  }
+}
+//#endregion
+
+//#region   symbol
+// symbol 类型  独一无二的类型
+const a1: symbol = Symbol(1)
+const a2: symbol = Symbol(1)
+// for Symbol    for全局查找symbol有没有注册过这个key  有就直接拿来用  没有就创建一个
+console.log(Symbol.for("name") === Symbol.for("name")) // true
+
+// 解决属性key重复的问题    [a1]索引签名
+const objj = {
+  name: "张三",
+  [a1]: 111,
+  [a2]: 222
+}
+console.log(objj) // {name: "张三", Symbol(1): 111, Symbol(2): 222}
+
+for (const key in objj) {
+  console.log(key) // name  for in 不能读到symbol的key
+}
+console.log(Object.keys(objj)) // ["name"]  Object.keys  也不能读到symbol的key
+console.log(Object.getOwnPropertyNames(objj)) // ["name"]   Object.getOwnPropertyName  也不能读到symbol的key
+console.log(Object.getOwnPropertySymbols(objj)) // [Symbol(1), Symbol(1)]  Object.getOwnPropertySymbols  只只只能读到symbol的key
+Reflect.ownKeys(objj) //ES6新增    ["name", Symbol(1), Symbol(1)]  Reflect.ownKeys  可以读到所有key
+
+//#endregion
+
+//#region   生成器generator   迭代器
 
 //#endregion
